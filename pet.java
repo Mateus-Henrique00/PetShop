@@ -17,6 +17,10 @@ public class pet {
     }
 
 
+    public void emitirSom(){
+
+    }
+
 
     public String getNome() {
         return nome;
