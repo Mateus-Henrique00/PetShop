@@ -1,12 +1,17 @@
-package DesafioPetShop;
+package DesafioPetShop.Com.PetShop.View;
+
+import DesafioPetShop.Com.PetShop.Model.Dono;
+import DesafioPetShop.StatusSaude;
+import DesafioPetShop.TipoAnimal;
+import DesafioPetShop.Com.PetShop.Model.pet;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<pet> clinica = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
 
+        Scanner sc = new Scanner(System.in);
+        pet p = new pet();
         System.out.println("1° Cadastrar Pet (Cão ou Gato).\n" +
                 "2° Listar todos os Pets (mostrando nome e status).\n" +
                 "3° Remover Pet (por nome).\n" +
@@ -38,15 +43,16 @@ public class Main {
 
                     StatusSaude saude = StatusSaude.valueOf(status);
 
-                    pet p = new pet(nome, idade, dono, saude, tipoAnimal);
-                    clinica.add(p);
+                    p.adicionarPet(nome,idade, dono,saude,tipoAnimal);
+
                     System.out.println("Pet cadastrado com sucesso.");
 
 
                     break;
 
                 case 2:
-                    System.out.println(Arrays.asList(clinica));
+                    p.listaDePet();
+
                     break;
 
 
@@ -54,13 +60,7 @@ public class Main {
 
                     System.out.printf("Digite o nome que deseja remover:");
                     String nomeProcurado = sc.nextLine();
-                    boolean remove = clinica.removeIf(pet -> pet.getNome().equalsIgnoreCase(nomeProcurado));
-
-                    if (remove){
-                        System.out.println("Pet removido com sucesso.");
-                    }else {
-                        System.out.println("Pet não encontrado.");
-                    }
+                    p.removerNome(nomeProcurado);
                     break;
 
 
